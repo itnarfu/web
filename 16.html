@@ -74,27 +74,17 @@
 <!-- Main -->
 
 <section class="slide narfu">
-    <h2>Лекционные материалы</h2>
-   <p> <a href="https://mariaparkhimovich.notion.site/Web-b74741d921a046dda0f594458363d83d" target="_blank">
-       Авторский курс на notion</a></p>
-     <p> <a href="https://htmlacademy.ru/" target="_blank">
-       Бесплатные тренажеры HTML Academy</a></p>
-    <p> </p>
-</section>
-
-<section class="slide narfu">
-    <h2>1. Подключение библиотеки</h2>
-    <p>Добавьте скрипт anime.js через CDN:</p>
+    <h2>1. Подключение</h2>
+    <p>Обязательный CDN-скрипт:</p>
     <pre style="font-size: x-small;">
         <code>&lt;!DOCTYPE html&gt;</code>
         <code>&lt;html&gt;</code>
         <code>&lt;head&gt;</code>
         <code>    &lt;title&gt;Пример&lt;/title&gt;</code>
-        <code>    &lt;script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/</code>
-        <code> 3.2.1/anime.min.js"&gt;&lt;/script&gt;</code>
+        <code>    <mark>&lt;script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"&gt;&lt;/script&gt;</mark></code>
         <code>&lt;/head&gt;</code>
         <code>&lt;body&gt;</code>
-        <code>    &lt;div id="box"&gt;&lt;/div&gt;</code>
+        <code>    &lt;div id="target"&gt;&lt;/div&gt;</code>
         <code>&lt;/body&gt;</code>
         <code>&lt;/html&gt;</code>
     </pre>
@@ -102,71 +92,70 @@
 
 <section class="slide narfu">
     <h2>2. Базовая анимация</h2>
-    <p>Перемещение элемента:</p>
-    <pre style="font-size: x-small;">
+    <p>Минимальный пример:</p>
+    <pre style="font-size: smaller;">
         <code>anime({</code>
-        <code>    targets: '#box',</code>
+        <code>    <mark>targets: '#box',</mark></code>
         <code>    translateX: '250px',</code>
-        <code>    duration: 1000,</code>
+        <code>    duration: <mark>1000</mark>,</code>
         <code>    easing: 'easeInOutQuad'</code>
         <code>});</code>
     </pre>
 </section>
 
 <section class="slide narfu">
-    <h2>3. Цепочка анимаций</h2>
-    <p>Использование timeline:</p>
+    <h2>3. Timeline</h2>
+    <p>Последовательность анимаций:</p>
     <pre style="font-size: x-small;">
-        <code>const timeline = anime.timeline();</code>
+        <code><mark>const tl = anime.timeline();</mark></code>
         <code> </code>
-        <code>timeline.add({</code>
-        <code>    targets: '.item',</code>
+        <code>tl.<mark>add</mark>({</code>
+        <code>    targets: '.el',</code>
         <code>    opacity: 0.5,</code>
         <code>    duration: 500</code>
-        <code>}).add({</code>
-        <code>    targets: '.item',</code>
-        <code>    translateY: 100,</code>
-        <code>    duration: 1000</code>
+        <code>})</code>
+        <code>.<mark>add</mark>({</code>
+        <code>    targets: '.el',</code>
+        <code>    translateY: 100</code>
         <code>});</code>
     </pre>
 </section>
 
 <section class="slide narfu">
-    <h2>4. Управление анимацией</h2>
+    <h2>4. Управление</h2>
     <p>Методы контроля:</p>
-    <pre style="font-size: x-small;">
+    <pre style="font-size: smaller;">
         <code>const anim = anime({</code>
-        <code>    targets: '.element',</code>
-        <code>    translateX: 100</code>
+        <code>    targets: '.obj',</code>
+        <code>    rotate: '1turn'</code>
         <code>});</code>
         <code> </code>
-        <code>anim.pause();  // Пауза</code>
-        <code>anim.play();   // Продолжить</code>
-        <code>anim.restart();// С начала</code>
+        <code>anim.<mark>pause()</mark>;  // Пауза</code>
+        <code>anim.<mark>play()</mark>;   // Запуск</code>
     </pre>
 </section>
 
 <section class="slide narfu">
-    <h2>5. Анимация нескольких элементов</h2>
-    <p>Задержка между элементами:</p>
-    <pre style="font-size: x-small;">
+    <h2>5. Stagger</h2>
+    <p>Каскадная анимация:</p>
+    <pre style="font-size: smaller;">
         <code>anime({</code>
-        <code>    targets: '.circle',</code>
-        <code>    scale: 1.5,</code>
-        <code>    delay: anime.stagger(100),</code>
+        <code>    targets: '.item',</code>
+        <code>    scale: 1.2,</code>
+        <code>    <mark>delay: anime.stagger(100)</mark>,</code>
         <code>    duration: 500</code>
         <code>});</code>
     </pre>
 </section>
 
 <section class="slide narfu">
-    <h2>6. SVG-анимация</h2>
-    <p>Рисование контура:</p>
-    <pre style="font-size: x-small;">
+    <h2>6. Ключевые параметры</h2>
+    <p>Важные настройки:</p>
+    <pre style="font-size: smaller;">
         <code>anime({</code>
-        <code>    targets: '#path',</code>
-        <code>    strokeDashoffset: [anime.setDashoffset, 0],</code>
-        <code>    duration: 2000</code>
+        <code>    <mark>loop: 3</mark>,          // Кол-во повторов</code>
+        <code>    <mark>direction: 'alternate'</mark>,</code>
+        <code>    <mark>autoplay: false</mark>  // Ручной старт</code>
         <code>});</code>
     </pre>
 </section>
