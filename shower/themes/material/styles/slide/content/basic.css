@@ -2,15 +2,15 @@
 
 .slide h2 {
     margin-top: 0;
-    margin-bottom: 32px;
+    margin-bottom: 28px;
     color: var(--color-black);
     line-height: 1;
     font-weight: 100;
-    font-size: 48px;
+    font-size: 44px;
 }
 
 .slide * + h2 {
-    margin-top: 40px;
+    margin-top: 30px;
 }
 
 .slide h2 a {
