@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <title>Основы позиционирования элементов</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="theme-color" content="#007BFF">
+    <link rel="stylesheet" href="shower/themes/material/styles/styles.css">
+    <link rel="stylesheet" href="styles/all_styles.css">
+    <link rel="shortcut icon" type="image/png" href="pictures/general/narfu_icon.png">
+    <style>
+        /*Подсветка синтаксиса*/
+
+        .selector {
+            color: var(--green);
+        }
+
+        .property {
+            color: var(--pink);
+        }
+
+        /*Float examples*/
+        .float-container{
+            border: 2px solid #007BFF;
+
+            font-size: 16px;
+            line-height: 25px;
+
+            max-width: 600px;
+            min-height: 50px;
+            padding: 5px;
+
+            margin: 0 auto;
+        }
+
+        .float-container img{
+            max-width: 250px;
+            margin: 5px;
+        }
+
+        .float-container--left img{
+            float: left;
+        }
+
+        .float-container--right img{
+            float: right;
+        }
+
+        .float-container--all img,
+        .float-container--all p{
+            float: left;
+        }
+
+        /*.slide ul li:lang(ru)::before {*/
+        /*    font-size: 1.4em;*/
+        /*    content: "›";*/
+        /*    line-height: 1.15em;*/
+        /*    color: var(--primary);*/
+        /*    font-weight: bold;*/
+        /*    transform: translateX( calc(-100% - 0.5em) );*/
+        /*}*/
+    </style>
+</head>
+<body class="shower list">
+<header class="caption">
+    <h1>Полезные ссылки</h1>
+    <p><a href="index.html">Web-технологии</a></p>
+</header>
+<section class="slide narfu_official" id="cover">
+    <h2>Полезные ссылки</h2>
+    <p>Лекция №7.1</p>
+</section>
+
+<!-- Main -->
+
+<section class="slide narfu">
+    <h2>Лекционные материалы</h2>
+   <p> <a href="https://mariaparkhimovich.notion.site/Web-b74741d921a046dda0f594458363d83d" target="_blank">
+       Авторский курс на notion</a></p>
+     <p> <a href="https://htmlacademy.ru/" target="_blank">
+       Бесплатные тренажеры HTML Academy</a></p>
+    <p> </p>
+</section>
+
+<section class="slide narfu">
+    <h2>1. Подключение библиотеки</h2>
+    <p>Добавьте скрипт anime.js в HTML-файл через CDN:</p>
+    <code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;Anime.js Demo&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;!-- Подключение библиотеки --&gt;
+    &lt;script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code>
+</section>
+
+<section class="slide narfu">
+    <h2>2. Базовая анимация</h2>
+    <p>Анимация перемещения элемента и изменения цвета:</p>
+    <code>// HTML: &lt;div id="box"&gt;&lt;/div&gt;
+anime({
+    targets: '#box',
+    translateX: '250px',
+    backgroundColor: '#FF0000',
+    duration: 1000,
+    easing: 'easeInOutQuad',
+    loop: true
+});</code>
+</section>
+
+<section class="slide narfu">
+    <h2>3. Цепочка анимаций (Timeline)</h2>
+    <p>Последовательное выполнение анимаций:</p>
+    <code>const timeline = anime.timeline();
+
+timeline
+.add({
+    targets: '.item',
+    opacity: 0.5,
+    duration: 500
+})
+.add({
+    targets: '.item',
+    translateY: 100,
+    duration: 1000
+});</code>
+</section>
+
+<section class="slide narfu">
+    <h2>4. Управление анимацией</h2>
+    <p>Методы контроля воспроизведения:</p>
+    <code>const anim = anime({
+    targets: '.element',
+    /* параметры */
+});
+
+// Управление
+anim.play();  // Запуск
+anim.pause(); // Пауза
+anim.restart(); // Перезапуск</code>
+</section>
+
+<section class="slide narfu">
+    <h2>5. Ключевые кадры</h2>
+    <p>Анимация с промежуточными состояниями:</p>
+    <code>anime({
+    targets: '.circle',
+    translateX: [
+        {value: 0, duration: 500},
+        {value: 100, duration: 1000},
+        {value: 50, duration: 500}
+    ],
+    easing: 'linear'
+});</code>
+</section>
+
+<section class="slide narfu">
+    <h2>6. Анимация нескольких элементов</h2>
+    <p>Использование stagger для задержки:</p>
+    <code>anime({
+    targets: '.list-item',
+    translateY: 50,
+    opacity: 0.5,
+    delay: anime.stagger(100), // Задержка 100ms между элементами
+    duration: 1000
+});</code>
+</section>
+
+<section class="slide narfu">
+    <h2>7. SVG-анимация</h2>
+    <p>Анимация пути SVG:</p>
+    <code>// HTML: &lt;svg&gt;&lt;path id="line" d="M10 10..."&gt;&lt;/svg&gt;
+anime({
+    targets: '#line',
+    d: 'M10 10 L100 100 Q150 50 200 200',
+    duration: 2000,
+    easing: 'easeInOutSine'
+});</code>
+</section>
+
+<section class="slide narfu">
+    <h2>8. Обратные вызовы (Callbacks)</h2>
+    <p>Использование событий анимации:</p>
+    <code>anime({
+    targets: '.alert',
+    translateY: 50,
+    begin: () => console.log('Анимация началась'),
+    complete: () => alert('Готово!'),
+    update: anim => console.log(anim.progress + '%')
+});</code>
+</section>
+
+<!-- Footer -->
+
+<section class="slide" id="see-more">
+    <h2 class="shout">
+        <a href="index.html">Все презентации<br>на GitHub Pages</a>
+    </h2>
+</section>
+<footer class="badge">
+    <a href="https://github.com/LoveSolaristics/shower-presentation.git">
+        <svg width="81" height="79" viewBox="0 0 81 79" aria-hidden="true">
+            <path d="M40.5 0a40.5 40.5 0 0 0-12.8 78.93c2 .37 2.76-.88 2.76-2s0-3.51-.05-6.89c-11.27 2.45-13.64-5.43-13.64-5.43-1.84-4.68-4.5-5.92-4.5-5.92-3.68-2.51.28-2.46.28-2.46 4.06.29 6.2 4.17 6.2 4.17 3.61 6.19 9.48 4.4 11.79 3.37a8.65 8.65 0 0 1 2.57-5.41c-9-1-18.45-4.5-18.45-20a15.65 15.65 0 0 1 4.17-10.87 14.57 14.57 0 0 1 .4-10.72s3.4-1.09 11.14 4.15a38.39 38.39 0 0 1 20.28 0c7.73-5.24 11.13-4.15 11.13-4.15a14.55 14.55 0 0 1 .4 10.72 15.63 15.63 0 0 1 4.16 10.87c0 15.56-9.47 19-18.49 20 1.45 1.25 2.75 3.72 2.75 7.5v11.11c0 1.08.73 2.34 2.78 1.95A40.51 40.51 0 0 0 40.5 0z"></path>
+        </svg>
+        Репозиторий<br>на&nbsp;GitHub
+    </a>
+</footer>
+<div class="progress"></div>
+<script src="shower/shower.js"></script>
+</body>
+</html>
