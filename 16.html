@@ -84,113 +84,90 @@
 
 <section class="slide narfu">
     <h2>1. Подключение библиотеки</h2>
-    <p>Добавьте скрипт anime.js в HTML-файл через CDN:</p>
-    <code>&lt;!DOCTYPE html&gt;
-&lt;html&gt;
-&lt;head&gt;
-    &lt;title&gt;Anime.js Demo&lt;/title&gt;
-&lt;/head&gt;
-&lt;body&gt;
-    &lt;!-- Подключение библиотеки --&gt;
-    &lt;script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"&gt;&lt;/script&gt;
-&lt;/body&gt;
-&lt;/html&gt;</code>
+    <p>Добавьте скрипт anime.js через CDN:</p>
+    <pre>
+        <code>&lt;!DOCTYPE html&gt;</code>
+        <code>&lt;html&gt;</code>
+        <code>&lt;head&gt;</code>
+        <code>    &lt;title&gt;Пример&lt;/title&gt;</code>
+        <code>    &lt;script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"&gt;&lt;/script&gt;</code>
+        <code>&lt;/head&gt;</code>
+        <code>&lt;body&gt;</code>
+        <code>    &lt;div id="box"&gt;&lt;/div&gt;</code>
+        <code>&lt;/body&gt;</code>
+        <code>&lt;/html&gt;</code>
+    </pre>
 </section>
 
 <section class="slide narfu">
     <h2>2. Базовая анимация</h2>
-    <p>Анимация перемещения элемента и изменения цвета:</p>
-    <code>// HTML: &lt;div id="box"&gt;&lt;/div&gt;
-anime({
-    targets: '#box',
-    translateX: '250px',
-    backgroundColor: '#FF0000',
-    duration: 1000,
-    easing: 'easeInOutQuad',
-    loop: true
-});</code>
+    <p>Перемещение элемента:</p>
+    <pre>
+        <code>anime({</code>
+        <code>    targets: '#box',</code>
+        <code>    translateX: '250px',</code>
+        <code>    duration: 1000,</code>
+        <code>    easing: 'easeInOutQuad'</code>
+        <code>});</code>
+    </pre>
 </section>
 
 <section class="slide narfu">
-    <h2>3. Цепочка анимаций (Timeline)</h2>
-    <p>Последовательное выполнение анимаций:</p>
-    <code>const timeline = anime.timeline();
-
-timeline
-.add({
-    targets: '.item',
-    opacity: 0.5,
-    duration: 500
-})
-.add({
-    targets: '.item',
-    translateY: 100,
-    duration: 1000
-});</code>
+    <h2>3. Цепочка анимаций</h2>
+    <p>Использование timeline:</p>
+    <pre>
+        <code>const timeline = anime.timeline();</code>
+        <code> </code>
+        <code>timeline.add({</code>
+        <code>    targets: '.item',</code>
+        <code>    opacity: 0.5,</code>
+        <code>    duration: 500</code>
+        <code>}).add({</code>
+        <code>    targets: '.item',</code>
+        <code>    translateY: 100,</code>
+        <code>    duration: 1000</code>
+        <code>});</code>
+    </pre>
 </section>
 
 <section class="slide narfu">
     <h2>4. Управление анимацией</h2>
-    <p>Методы контроля воспроизведения:</p>
-    <code>const anim = anime({
-    targets: '.element',
-    /* параметры */
-});
-
-// Управление
-anim.play();  // Запуск
-anim.pause(); // Пауза
-anim.restart(); // Перезапуск</code>
+    <p>Методы контроля:</p>
+    <pre>
+        <code>const anim = anime({</code>
+        <code>    targets: '.element',</code>
+        <code>    translateX: 100</code>
+        <code>});</code>
+        <code> </code>
+        <code>anim.pause();  // Пауза</code>
+        <code>anim.play();   // Продолжить</code>
+        <code>anim.restart();// С начала</code>
+    </pre>
 </section>
 
 <section class="slide narfu">
-    <h2>5. Ключевые кадры</h2>
-    <p>Анимация с промежуточными состояниями:</p>
-    <code>anime({
-    targets: '.circle',
-    translateX: [
-        {value: 0, duration: 500},
-        {value: 100, duration: 1000},
-        {value: 50, duration: 500}
-    ],
-    easing: 'linear'
-});</code>
+    <h2>5. Анимация нескольких элементов</h2>
+    <p>Задержка между элементами:</p>
+    <pre>
+        <code>anime({</code>
+        <code>    targets: '.circle',</code>
+        <code>    scale: 1.5,</code>
+        <code>    delay: anime.stagger(100),</code>
+        <code>    duration: 500</code>
+        <code>});</code>
+    </pre>
 </section>
 
 <section class="slide narfu">
-    <h2>6. Анимация нескольких элементов</h2>
-    <p>Использование stagger для задержки:</p>
-    <code>anime({
-    targets: '.list-item',
-    translateY: 50,
-    opacity: 0.5,
-    delay: anime.stagger(100), // Задержка 100ms между элементами
-    duration: 1000
-});</code>
-</section>
-
-<section class="slide narfu">
-    <h2>7. SVG-анимация</h2>
-    <p>Анимация пути SVG:</p>
-    <code>// HTML: &lt;svg&gt;&lt;path id="line" d="M10 10..."&gt;&lt;/svg&gt;
-anime({
-    targets: '#line',
-    d: 'M10 10 L100 100 Q150 50 200 200',
-    duration: 2000,
-    easing: 'easeInOutSine'
-});</code>
-</section>
-
-<section class="slide narfu">
-    <h2>8. Обратные вызовы (Callbacks)</h2>
-    <p>Использование событий анимации:</p>
-    <code>anime({
-    targets: '.alert',
-    translateY: 50,
-    begin: () => console.log('Анимация началась'),
-    complete: () => alert('Готово!'),
-    update: anim => console.log(anim.progress + '%')
-});</code>
+    <h2>6. SVG-анимация</h2>
+    <p>Рисование контура:</p>
+    <pre>
+        <code>anime({</code>
+        <code>    targets: '#path',</code>
+        <code>    strokeDashoffset: [anime.setDashoffset, 0],</code>
+        <code>    duration: 2000</code>
+        <code>});</code>
+    </pre>
 </section>
 
 <!-- Footer -->
