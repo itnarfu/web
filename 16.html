@@ -159,7 +159,106 @@
         <code>});</code>
     </pre>
 </section>
+<section class="slide narfu">
+    <h2>7. Анимация по пути SVG</h2>
+    <p>Движение объекта вдоль SVG-пути:</p>
+    <pre style="font-size: x-small;">
+        <code>&lt;svg width="200" height="200"&gt;</code>
+        <code>    &lt;path id="motion-path" d="M10 80 Q 100 10 190 80" fill="none" stroke="grey"/&gt;</code>
+        <code>    &lt;circle id="mover" cx="0" cy="0" r="5" fill="red"/&gt;</code>
+        <code>&lt;/svg&gt;</code>
+        <code> </code>
+        <code>anime({</code>
+        <code>    targets: '#mover',</code>
+        <code>    <mark>translateX: anime.path('#motion-path')('x'),</mark></code>
+        <code>    <mark>translateY: anime.path('#motion-path')('y'),</mark></code>
+        <code>    duration: 3000,</code>
+        <code>    loop: true</code>
+        <code>});</code>
+    </pre>
+</section>
 
+<section class="slide narfu">
+    <h2>8. Интерактивный переключатель</h2>
+    <p>Анимация при клике с изменением состояния:</p>
+    <pre style="font-size: smaller;">
+        <code>document.querySelector('.switch').addEventListener('click', () => {</code>
+        <code>    anime({</code>
+        <code>        targets: '.toggle',</code>
+        <code>        <mark>translateX: '+=50px',</mark></code>
+        <code>        <mark>backgroundColor: '#4CAF50',</mark></code>
+        <code>        duration: 500,</code>
+        <code>        easing: 'spring(1, 80, 10, 0)'</code>
+        <code>    });</code>
+        <code>});</code>
+    </pre>
+</section>
+
+<section class="slide narfu">
+    <h2>9. Параметры анимации в реальном времени</h2>
+    <p>Динамическое изменение свойств:</p>
+    <pre style="font-size: x-small;">
+        <code>const animation = anime({</code>
+        <code>    targets: '.dynamic',</code>
+        <code>    translateX: 100,</code>
+        <code>    <mark>update: function(anim) {</mark></code>
+        <code>        console.log('Прогресс: ' + Math.round(anim.progress) + '%');</code>
+        <code>    },</code>
+        <code>    <mark>begin: function() {</mark></code>
+        <code>        console.log('Старт анимации!');</code>
+        <code>    }</code>
+        <code>});</code>
+    </pre>
+</section>
+
+<section class="slide narfu">
+    <h2>10. Комплексная трансформация</h2>
+    <p>Сочетание нескольких преобразований:</p>
+    <pre style="font-size: smaller;">
+        <code>anime({</code>
+        <code>    targets: '.complex',</code>
+        <code>    <mark>scale: [1, 1.5],</mark></code>
+        <code>    <mark>rotate: '360deg',</mark></code>
+        <code>    <mark>skew: '15deg',</mark></code>
+        <code>    borderRadius: ['0%', '50%'],</code>
+        <code>    duration: 1500,</code>
+        <code>    direction: 'alternate'</code>
+        <code>});</code>
+    </pre>
+</section>
+
+<section class="slide narfu">
+    <h2>11. Кастомные easing-функции</h2>
+    <p>Использование кривых Безье:</p>
+    <pre style="font-size: smaller;">
+        <code>anime({</code>
+        <code>    targets: '.custom-ease',</code>
+        <code>    translateY: 100,</code>
+        <code>    <mark>easing: 'cubicBezier(0.785, 0.135, 0.150, 0.860)',</mark></code>
+        <code>    duration: 1000,</code>
+        <code>    loop: true</code>
+        <code>});</code>
+    </pre>
+</section>
+
+<section class="slide narfu">
+    <h2>12. Анимация текстового контента</h2>
+    <p>Посимвольное появление текста:</p>
+    <pre style="font-size: x-small;">
+        <code>const textElement = document.querySelector('.text-anim');</code>
+        <code>textElement.innerHTML = textElement.textContent</code>
+        <code>    .split('')</code>
+        <code>    .map((char, i) => `&lt;span style="opacity:0"&gt;${char}&lt;/span&gt;`)</code>
+        <code>    .join('');</code>
+        <code> </code>
+        <code>anime({</code>
+        <code>    targets: '.text-anim span',</code>
+        <code>    <mark>opacity: [0, 1],</mark></code>
+        <code>    <mark>delay: anime.stagger(50),</mark></code>
+        <code>    duration: 500</code>
+        <code>});</code>
+    </pre>
+</section>
 <!-- Footer -->
 
 <section class="slide" id="see-more">
