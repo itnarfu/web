@@ -259,6 +259,138 @@
         <code>});</code>
     </pre>
 </section>
+    <!-- Пример 13: Анимация загрузки с прогрессом -->
+<section class="slide narfu">
+    <h2>13. Индикатор загрузки</h2>
+    <p>Анимированный прогресс-бар с цифровым отображением %</p>
+    <pre style="font-size: x-small;">
+        <code>&lt;div class="loader-container"&gt;</code>
+        <code>    &lt;div class="loader-bar"&gt;&lt;/div&gt;</code>
+        <code>    &lt;div class="loader-text"&gt;0%&lt;/div&gt;</code>
+        <code>&lt;/div&gt;</code>
+        <code> </code>
+        <code>anime({</code>
+        <code>    targets: '.loader-bar',</code>
+        <code>    <mark>width: '100%',</mark></code>
+        <code>    duration: 3000,</code>
+        <code>    easing: 'easeInOutQuad',</code>
+        <code>    <mark>update: function(anim) {</mark></code>
+        <code>        document.querySelector('.loader-text').textContent = </code>
+        <code>            Math.round(anim.progress) + '%';</code>
+        <code>    }</code>
+        <code>});</code>
+    </pre>
+</section>
+
+<!-- Пример 14: Интерактивная анимация ввода -->
+<section class="slide narfu">
+    <h2>14. Реакция на ввод текста</h2>
+    <p>Анимация поля ввода при фокусе и вводе символов</p>
+    <pre>
+        <code>const inputField = document.querySelector('#text-input');</code>
+        <code> </code>
+        <code>inputField.addEventListener('focus', () => {</code>
+        <code>    anime({</code>
+        <code>        targets: inputField,</code>
+        <code>        <mark>borderColor: '#4CAF50',</mark></code>
+        <code>        scale: 1.05,</code>
+        <code>        duration: 300</code>
+        <code>    });</code>
+        <code>});</code>
+        <code> </code>
+        <code>inputField.addEventListener('input', () => {</code>
+        <code>    anime({</code>
+        <code>        targets: '.char-count',</code>
+        <code>        <mark>translateY: [-10, 0],</mark></code>
+        <code>        opacity: [0, 1],</code>
+        <code>        duration: 200</code>
+        <code>    });</code>
+        <code>});</code>
+    </pre>
+</section>
+    <!-- Пример 16: Анимация скролла -->
+<section class="slide narfu">
+    <h2>16. Параллакс при скролле</h2>
+    <p>Элемент движется с разной скоростью относительно прокрутки страницы</p>
+    <pre style="font-size: x-small;">
+        <code>window.addEventListener('scroll', () => {</code>
+        <code>    anime({</code>
+        <code>        targets: '.parallax-item',</code>
+        <code>        <mark>translateY: window.pageYOffset * 0.7,</mark></code>
+        <code>        duration: 0 // Мгновенное обновление</code>
+        <code>    });</code>
+        <code>});</code>
+    </pre>
+</section>
+
+<!-- Пример 17: Динамическая смена цвета -->
+<section class="slide narfu">
+    <h2>17. Градиентная анимация</h2>
+    <p>Плавное перетекание цветов фона с цикличным повторением</p>
+    <pre>
+        <code>anime({</code>
+        <code>    targets: document.body,</code>
+        <code>    background: [</code>
+        <code>        <mark>'#FF6B6B', '#4ECDC4', '#45B7D1'</mark></code>
+        <code>    ],</code>
+        <code>    duration: 5000,</code>
+        <code>    direction: 'alternate',</code>
+        <code>    loop: true</code>
+        <code>});</code>
+    </pre>
+</section>
+
+<!-- Пример 18: Физика отскока -->
+<section class="slide narfu">
+    <h2>18. Эффект пружины</h2>
+    <p>Реализация bounce-эффекта с помощью параметра elasticity</p>
+    <pre style="font-size: x-small;">
+        <code>anime({</code>
+        <code>    targets: '.ball',</code>
+        <code>    translateY: 250,</code>
+        <code>    <mark>elasticity: 600,</mark></code>
+        <code>    duration: 2000,</code>
+        <code>    easing: 'easeOutElastic(1, .5)'</code>
+        <code>});</code>
+    </pre>
+</section>
+
+<!-- Пример 19: Интерактивная галерея -->
+<section class="slide narfu">
+    <h2>19. Анимация карточек</h2>
+    <p>3D-эффект наклона карточки при наведении курсора</p>
+        <pre>
+        <code>document.querySelectorAll('.card').forEach(card => {</code>
+        <code>    card.addEventListener('mousemove', (e) => {</code>
+        <code>        const x = e.clientX - card.offsetLeft;</code>
+        <code>        anime({</code>
+        <code>            targets: card,</code>
+        <code>            <mark>rotateY: (x / 20) + 'deg',</mark></code>
+        <code>            duration: 150</code>
+        <code>        });</code>
+        <code>    });</code>
+        <code>});</code>
+    </pre>
+</section>
+
+<!-- Пример 20: Синхронизация аудио -->
+<section class="slide narfu">
+    <h2>20. Анимация визуализатора</h2>
+    <p>Синхронизация с аудио через Web Audio API</p>
+    <pre style="font-size: x-small;">
+        <code>const audioContext = new AudioContext();</code>
+        <code>const analyser = audioContext.createAnalyser();</code>
+        <code> </code>
+        <code>function updateBars() {</code>
+        <code>    anime({</code>
+        <code>        targets: '.audio-bar',</code>
+        <code>        <mark>height: anime.random(20, 100),</mark></code>
+        <code>        duration: 100,</code>
+        <code>        complete: updateBars</code>
+        <code>    });</code>
+        <code>}</code>
+    </pre>
+</section>
 <!-- Footer -->
 
 <section class="slide" id="see-more">
