@@ -72,7 +72,217 @@
 </section>
 
 <!-- Main -->
+<!-- Слайд 1: Основы transition -->
+<section class="slide narfu">
+    <h2>1. Синтаксис transition</h2>
+    <p>Анимация изменений свойств при событиях</p>
+    <pre>
+        <code>selector {</code>
+        <code>    <mark>transition-property</mark>: all | property-name;</code>
+        <code>    <mark>transition-duration</mark>: 0.3s;</code>
+        <code>    <mark>transition-timing-function</mark>: ease | linear | cubic-bezier();</code>
+        <code>    <mark>transition-delay</mark>: 0s;</code>
+        <code>    /* Сокращённая запись: */</code>
+        <code>    <mark>transition: all 0.3s ease 0.1s;</mark></code>
+        <code>}</code>
+    </pre>
+</section>
 
+<!-- Слайд 2: Структура @keyframes -->
+<section class="slide narfu">
+    <h2>2. Правило @keyframes</h2>
+    <p>Определение этапов анимации</p>
+    <pre style="font-size: x-small;">
+        <code><mark>@keyframes animation-name</mark> {</code>
+        <code>    <mark>from</mark> { /* Начальное состояние */ }</code>
+        <code>    <mark>30%</mark> { /* Промежуточное состояние */ }</code>
+        <code>    <mark>to</mark> { /* Конечное состояние */ }</code>
+        <code>}</code>
+        <code>.element {</code>
+        <code>    animation: <mark>animation-name 2s ease-in 1s 3 alternate</mark>;</code>
+        <code>}</code>
+    </pre>
+    <p>Порядок параметров animation: name duration timing-function delay iteration-count direction</p>
+</section>
+
+<!-- Слайд 3: Timing Functions -->
+<section class="slide narfu">
+    <h2>3. Функции плавности</h2>
+    <p>Управление скоростью анимации</p>
+    <pre>
+        <code>transition-timing-function:</code>
+        <code>    <mark>ease</mark> (по умолчанию)</code>
+        <code>    <mark>linear</mark> (постоянная скорость)</code>
+        <code>    <mark>ease-in</mark> (ускорение)</code>
+        <code>    <mark>ease-out</mark> (замедление)</code>
+        <code>    <mark>cubic-bezier(0.17, 0.67, 0.83, 0.67)</mark></code>
+        <code>    <mark>steps(5, start)</mark> (дискретные шаги)</code>
+    </pre>
+</section>
+
+<!-- Слайд 4: Множественные анимации -->
+<section class="slide narfu">
+    <h2>4. Несколько анимаций</h2>
+    <p>Параллельное выполнение разных анимаций</p>
+    <pre style="font-size: x-small;">
+        <code>.element {</code>
+        <code>    animation: </code>
+        <code>        <mark>slide 2s ease,</mark></code>
+        <code>        <mark>fade 1.5s linear;</mark></code>
+        <code>}</code>
+        <code> </code>
+        <code>@keyframes slide {</code>
+        <code>    from { transform: translateX(-100%); }</code>
+        <code>}</code>
+        <code>@keyframes fade {</code>
+        <code>    from { opacity: 0; }</code>
+        <code>}</code>
+    </pre>
+</section>
+
+<!-- Слайд 5: Анимация transform -->
+<section class="slide narfu">
+    <h2>5. Свойство transform</h2>
+    <p>Комбинирование трансформаций</p>
+    <pre>
+        <code>transform: </code>
+        <code>    <mark>translateX(50px)</mark>    /* Смещение */</code>
+        <code>    <mark>rotate(45deg)</mark>       /* Вращение */</code>
+        <code>    <mark>scale(1.2)</mark>         /* Масштаб */</code>
+        <code>    <mark>skew(15deg)</mark>;       /* Наклон */</code>
+        <code> </code>
+        <code>/* 3D-трансформации */</code>
+        <code>transform: <mark>perspective(500px) rotateY(30deg)</mark>;</code>
+    </pre>
+</section>
+
+<!-- Слайд 6: Управление анимацией -->
+<section class="slide narfu">
+    <h2>6. Контроль выполнения</h2>
+    <p>Свойства управления анимацией</p>
+    <pre style="font-size: x-small;">
+        <code>.element {</code>
+        <code>    <mark>animation-play-state</mark>: running | paused;</code>
+        <code>    <mark>animation-fill-mode</mark>: </code>
+        <code>        none | forwards | backwards | both;</code>
+        <code>}</code>
+        <code> </code>
+        <code>/* Пример остановки при наведении */</code>
+        <code>.element:hover {</code>
+        <code>    <mark>animation-play-state: paused;</mark></code>
+        <code>}</code>
+    </pre>
+</section>
+
+<!-- Слайд 7: Каскадные анимации -->
+<section class="slide narfu">
+    <h2>7. Задержки для элементов</h2>
+    <p>Последовательное выполнение для группы</p>
+    <pre>
+        <code>.item:nth-child(1) { animation-delay: 0s; }</code>
+        <code>.item:nth-child(2) { animation-delay: 0.2s; }</code>
+        <code>.item:nth-child(3) { animation-delay: 0.4s; }</code>
+        <code>.item:nth-child(4) { animation-delay: 0.6s; }</code>
+        <code> </code>
+        <code>/* Или через CSS-переменные */</code>
+        <code>.item { animation-delay: <mark>calc(var(--i) * 0.1s)</mark>; }</code>
+    </pre>
+</section>
+
+    <!-- Пример 1: Простая анимация вращения -->
+<section class="slide narfu">
+    <h2>1. Вращение элемента</h2>
+    <p>Бесконечная анимация вращения с помощью @keyframes</p>
+    <pre>
+        <code>.spinner {</code>
+        <code>    width: 50px;</code>
+        <code>    height: 50px;</code>
+        <code>    border: 4px solid #f3f3f3;</code>
+        <code>    border-top: 4px solid <mark>#3498db</mark>;</code>
+        <code>    border-radius: 50%;</code>
+        <code>    <mark>animation: spin 2s linear infinite;</mark></code>
+        <code>}</code>
+        <code> </code>
+        <code><mark>@keyframes spin</mark> {</code>
+        <code>    0% { transform: rotate(0deg); }</code>
+        <code>    100% { transform: rotate(360deg); }</code>
+        <code>}</code>
+    </pre>
+</section>
+
+<!-- Пример 2: Плавное появление -->
+<section class="slide narfu">
+    <h2>2. Fade-in эффект</h2>
+    <p>Постепенное появление элемента с задержкой</p>
+    <pre style="font-size: x-small;">
+        <code>.fade-in {</code>
+        <code>    opacity: 0;</code>
+        <code>    <mark>animation: fadeIn 1.5s ease-out forwards;</mark></code>
+        <code>    animation-delay: 0.5s;</code>
+        <code>}</code>
+        <code> </code>
+        <code><mark>@keyframes fadeIn</mark> {</code>
+        <code>    from { opacity: 0; transform: translateY(20px); }</code>
+        <code>    to { opacity: 1; transform: translateY(0); }</code>
+        <code>}</code>
+    </pre>
+</section>
+
+<!-- Пример 3: Анимация кнопки -->
+<section class="slide narfu">
+    <h2>3. Интерактивная кнопка</h2>
+    <p>Эффекты при наведении и нажатии</p>
+    <pre>
+        <code>.btn {</code>
+        <code>    transition: <mark>all 0.3s ease</mark>;</code>
+        <code>    transform: scale(1);</code>
+        <code>}</code>
+        <code> </code>
+        <code>.btn:hover {</code>
+        <code>    transform: <mark>scale(1.05)</mark>;</code>
+        <code>    box-shadow: 0 5px 15px rgba(0,0,0,0.3);</code>
+        <code>}</code>
+        <code> </code>
+        <code>.btn:active {</code>
+        <code>    transform: <mark>scale(0.95)</mark>;</code>
+        <code>}</code>
+    </pre>
+</section>
+
+<!-- Пример 4: Сложная анимация -->
+<section class="slide narfu">
+    <h2>4. Комбинированная анимация</h2>
+    <p>Сочетание нескольких трансформаций</p>
+    <pre style="font-size: x-small;">
+        <code>.complex-anim {</code>
+        <code>    animation: <mark>moveAndRotate 3s ease infinite</mark>;</code>
+        <code>}</code>
+        <code> </code>
+        <code><mark>@keyframes moveAndRotate</mark> {</code>
+        <code>    0% { transform: translateX(0) rotate(0deg); }</code>
+        <code>    50% { transform: translateX(200px) rotate(180deg); }</code>
+        <code>    100% { transform: translateX(0) rotate(360deg); }</code>
+        <code>}</code>
+    </pre>
+</section>
+
+<!-- Пример 5: Шаговые переходы -->
+<section class="slide narfu">
+    <h2>5. Пошаговая анимация</h2>
+    <p>Имитация спрайтовой анимации с помощью steps()</p>
+    <pre>
+        <code>.sprite {</code>
+        <code>    width: 100px;</code>
+        <code>    height: 100px;</code>
+        <code>    background: url('sprite-sheet.png') 0 0;</code>
+        <code>    <mark>animation: play 1s steps(6) infinite;</mark></code>
+        <code>}</code>
+        <code> </code>
+        <code><mark>@keyframes play</mark> {</code>
+        <code>    100% { background-position: -600px 0; }</code>
+        <code>}</code>
+    </pre>
+</section>
 <section class="slide narfu">
     <h2>1. Подключение</h2>
     <p>Обязательный CDN-скрипт:</p>
